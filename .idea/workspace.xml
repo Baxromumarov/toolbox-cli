@@ -5,23 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61e61680-3e0e-4b5d-8c7d-f714bb0fd883" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/info/models.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/info/diskUsage.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/info/diskUsage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/info/info.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/root.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/storage.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/time.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/info/time.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/weather.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/info/weather.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/toolbox" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/root.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/root.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/toolbox-cli" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">

@@ -33,11 +33,11 @@ func Execute() {
 }
 
 func AddCmd() {
-	rootCmd.AddCommand(info.DiskUsageCmd)
 	rootCmd.AddCommand(net.NetCmd)
 	rootCmd.AddCommand(info.TimeCmd)
 	rootCmd.AddCommand(info.WeatherCmd)
 	rootCmd.AddCommand(info.AddrCmd)
+	rootCmd.AddCommand(info.DiskUsageCmd)
 
 }
 func init() {
