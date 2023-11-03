@@ -1,5 +1,5 @@
 # Use the official Golang image as the base image
-FROM golang:latest AS build
+FROM golang:1.18 AS build
 
 # Set the working directory inside the container
 RUN mkdir -p $GOPATH/src/github.com/baxromumarov/toolbox-cli
