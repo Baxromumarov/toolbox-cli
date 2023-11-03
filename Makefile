@@ -7,7 +7,7 @@ TAG=latest
 ENV_TAG=latest
 
 build:
-	CGO_ENABLED=0 GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ${CURRENT_DIR}/${APP} ${APP_CMD_DIR}/main.go
+	CGO_ENABLED=0 GOOS=linux go build  -o ${CURRENT_DIR}/${APP} ${APP_CMD_DIR}/main.go
 
 build-image:
 	docker build --rm -t ${REGISTRY}/${PROJECT_NAME}/${APP}:${TAG} .
