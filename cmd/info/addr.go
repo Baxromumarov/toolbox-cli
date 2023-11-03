@@ -46,8 +46,8 @@ func AddrInfo() {
 		color.Red("Error decoding JSON:", err)
 		return
 	}
-	fmt.Printf("Country: %s\n", location.Country)
 	color.Green("Your IP Address: %s\n", location.Query)
+	fmt.Printf("Country: %s\n", location.Country)
 	fmt.Printf("City: %s\n", location.City)
 	fmt.Printf("Region: %s\n", location.Region)
 	fmt.Printf("Latitude: %.4f\n", location.Lat)
@@ -58,7 +58,7 @@ func AddrInfo() {
 
 }
 func init() {
-	AddrCmd.Flags().StringVarP(&Input, "address", "a", "", "getting address information")
+	//AddrCmd.Flags().StringVarP(&Input, "address", "a", "", "getting address information")
 
 	// Here you will define your flags and configuration settings.
 

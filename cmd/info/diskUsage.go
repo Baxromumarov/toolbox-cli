@@ -15,8 +15,8 @@ var DiskUsageCmd = &cobra.Command{
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		usage := du.NewDiskUsage(".")
-		color.Yellow("Disk usage of current directory:")
-		fmt.Printf("Currency directory usage: %f %%\nAvailable: %.f GB\nTotal Size: %.f\nTotal Usage: %.f GB\n",
+		color.Green("Disk Information")
+		fmt.Printf("Currency directory usage: %f %%\nAvailable: %.f GB\nTotal Size: %.f GB\nTotal Usage: %.f GB\n",
 			usage.Usage(),
 			float64(usage.Available())/float64(1024*1024*1024),
 			float64(usage.Size())/float64(1024*1024*1024),
