@@ -6,8 +6,8 @@ package cmd
 import (
 	"os"
 
-	"github.com/baxromumarov/toolbox/cmd/info"
-	"github.com/baxromumarov/toolbox/cmd/net"
+	"github.com/baxromumarov/toolbox-cli/cmd/info"
+	"github.com/baxromumarov/toolbox-cli/cmd/net"
 	"github.com/spf13/cobra"
 )
 
