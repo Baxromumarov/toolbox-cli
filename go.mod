@@ -1,6 +1,6 @@
 module github.com/baxromumarov/toolbox-cli
 
-go 1.21.0
+go 1.18
 
 require (
 	github.com/fatih/color v1.15.0
