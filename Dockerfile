@@ -8,8 +8,7 @@ WORKDIR $GOPATH/src/github.com/baxromumarov/toolbox-cli
 # Copy the Go module files and code into the container
 COPY . ./
 
-RUN go mod vendor && \
-    make build 
+RUN make build 
 
 RUN cp toolbox-cli /usr/local/bin/
 # # Download the Go module dependencies
