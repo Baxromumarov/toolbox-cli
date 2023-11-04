@@ -38,6 +38,7 @@ func AddCmd() {
 	rootCmd.AddCommand(info.WeatherCmd)
 	rootCmd.AddCommand(info.AddrCmd)
 	rootCmd.AddCommand(info.DiskUsageCmd)
+	rootCmd.AddCommand(info.InternetSpeedCmd)
 
 }
 func init() {
