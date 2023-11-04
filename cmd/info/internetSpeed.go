@@ -3,9 +3,12 @@ package info
 
 import (
 	"fmt"
+	"net/http"
+	"time"
+
+	"github.com/fatih/color"
 	"github.com/showwin/speedtest-go/speedtest"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // InternetSpeedCmd internetSpeedCmd represents the internetSpeed command
@@ -22,6 +25,7 @@ var InternetSpeedCmd = &cobra.Command{
 }
 
 func CalculateInternetSpeed() InternetSpeedResult {
+	go Animation()
 	var speedTestClient = speedtest.New()
 	serverList, _ := speedTestClient.FetchServers()
 	targets, _ := serverList.FindServer([]int{})
@@ -55,6 +59,32 @@ func IsDeviceConnectedToInternet() bool {
 	} else {
 		return true
 	}
+}
+
+func Animation() {
+	loadingCharacters := []string{"|", "/", "-", "\\"}
+	connectingMessages := []string{
+
+		"Configuring DNS...",
+		"Obtaining IP Address...",
+		"Establishing Connection...",
+	}
+
+	for _, message := range connectingMessages {
+		color.Yellow(fmt.Sprintf("%s\n", message))
+		time.Sleep(2 * time.Second)
+	}
+	// fmt.Printf("\r                                 \r")
+
+	for i := 0; i < 15000; i++ {
+		character := loadingCharacters[i%len(loadingCharacters)]
+		fmt.Printf("\rCalculating %s", character)
+		time.Sleep(100 * time.Millisecond)
+
+	}
+
+	fmt.Printf("\r                                 \r")
+
 }
 
 func init() {
