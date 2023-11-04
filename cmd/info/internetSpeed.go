@@ -3,6 +3,7 @@ package info
 
 import (
 	"fmt"
+	"github.com/fatih/color"
 	"github.com/showwin/speedtest-go/speedtest"
 	"github.com/spf13/cobra"
 	"net/http"
@@ -25,7 +26,6 @@ func CalculateInternetSpeed() {
 	var speedTestClient = speedtest.New()
 	serverList, _ := speedTestClient.FetchServers()
 	targets, _ := serverList.FindServer([]int{})
-
 	for _, s := range targets {
 		// Please make sure your host can access this test server,
 		// otherwise you will get an error.
@@ -33,7 +33,9 @@ func CalculateInternetSpeed() {
 		s.PingTest(nil)
 		s.DownloadTest()
 		s.UploadTest()
-		fmt.Printf("Latency: %s, Download: %f Mbps, Upload: %f Mbps\n", s.Latency, s.DLSpeed, s.ULSpeed)
+		color.Blue(fmt.Sprintf("Download: %.2f Mbps", s.DLSpeed))
+		color.Green(fmt.Sprintf("Upload: %.2f Mbps", s.ULSpeed))
+		color.Red(fmt.Sprintf("Latency: %v ns", s.Latency))
 		s.Context.Reset() // reset counter
 	}
 
