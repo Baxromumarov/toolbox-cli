@@ -3,9 +3,10 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/baxromumarov/toolbox-cli/cmd/info"
 	"github.com/baxromumarov/toolbox-cli/cmd/net"
-	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -38,7 +39,6 @@ func AddCmd() {
 	rootCmd.AddCommand(info.WeatherCmd)
 	rootCmd.AddCommand(info.AddrCmd)
 	rootCmd.AddCommand(info.DiskUsageCmd)
-
 }
 func init() {
 	cobra.OnInitialize(initConfig)
