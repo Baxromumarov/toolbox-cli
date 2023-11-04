@@ -3,9 +3,12 @@ package info
 
 import (
 	"fmt"
+	"net/http"
+	"time"
+
+	"github.com/fatih/color"
 	"github.com/showwin/speedtest-go/speedtest"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // InternetSpeedCmd internetSpeedCmd represents the internetSpeed command
@@ -15,17 +18,22 @@ var InternetSpeedCmd = &cobra.Command{
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		if IsDeviceConnectedToInternet() {
-			CalculateInternetSpeed()
-
+			resultInternet := CalculateInternetSpeed()
+			color.Blue(fmt.Sprintf("Download: %.2f Mbps", resultInternet.DownloadSpeed))
+			color.Green(fmt.Sprintf("Upload: %.2f Mbps", resultInternet.UploadSpeed))
+			color.Red(fmt.Sprintf("Latency: %v ns", resultInternet.Latency))
+			color.White(fmt.Sprintf("Sponsor: %v ", resultInternet.Sponsor))
 		}
 	},
 }
 
-func CalculateInternetSpeed() {
+func CalculateInternetSpeed() InternetSpeedResult {
+	go Animation()
 	var speedTestClient = speedtest.New()
 	serverList, _ := speedTestClient.FetchServers()
 	targets, _ := serverList.FindServer([]int{})
-
+	var result = InternetSpeedResult{}
+	//fmt.Println(targets)
 	for _, s := range targets {
 		// Please make sure your host can access this test server,
 		// otherwise you will get an error.
@@ -33,10 +41,18 @@ func CalculateInternetSpeed() {
 		s.PingTest(nil)
 		s.DownloadTest()
 		s.UploadTest()
-		fmt.Printf("Latency: %s, Download: %f Mbps, Upload: %f Mbps\n", s.Latency, s.DLSpeed, s.ULSpeed)
+
+		result.DownloadSpeed = s.DLSpeed
+		result.UploadSpeed = s.ULSpeed
+		result.Latency = s.Latency
+		result.Country = s.Country
+		result.Name = s.Name
+		result.Sponsor = s.Sponsor
 		s.Context.Reset() // reset counter
 	}
-
+	fmt.Printf("\r                                                     \r")
+	fmt.Printf("\033[2J\033[1;1H")
+	return result
 }
 func IsDeviceConnectedToInternet() bool {
 	if _, err := http.Get("http://www.google.com"); err != nil {
@@ -44,6 +60,29 @@ func IsDeviceConnectedToInternet() bool {
 	} else {
 		return true
 	}
+}
+
+func Animation() {
+	loadingCharacters := []string{"|", "/", "-", "\\"}
+	connectingMessages := []string{
+		"Configuring DNS...",
+		"Obtaining IP Address...",
+		"Establishing Connection...",
+	}
+
+	for _, message := range connectingMessages {
+		fmt.Printf("%s\n", message)
+		time.Sleep(2 * time.Second)
+	}
+	// fmt.Printf("\r                                 \r")
+
+	for i := 0; i < 15000; i++ {
+		character := loadingCharacters[i%len(loadingCharacters)]
+		fmt.Printf("\rCalculating %s", character)
+		time.Sleep(100 * time.Millisecond)
+
+	}
+
 }
 
 func init() {

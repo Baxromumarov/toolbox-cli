@@ -1,5 +1,7 @@
 package info
 
+import "time"
+
 type Weather struct {
 	Location struct {
 		Name    string `json:"name"`
@@ -35,4 +37,13 @@ type LocationInfo struct {
 	Lon      float64 `json:"lon"`
 	ISP      string  `json:"isp"`
 	Timezone string  `json:"timezone"`
+}
+
+type InternetSpeedResult struct {
+	DownloadSpeed float64       `json:"download_speed"`
+	UploadSpeed   float64       `json:"upload_speed"`
+	Latency       time.Duration `json:"latency"`
+	Country       string        `json:"country"`
+	Name          string        `json:"name"`
+	Sponsor       string        `json:"sponsor"`
 }
