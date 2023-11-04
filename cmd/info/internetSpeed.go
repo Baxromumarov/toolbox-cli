@@ -18,8 +18,11 @@ var InternetSpeedCmd = &cobra.Command{
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		if IsDeviceConnectedToInternet() {
-			fmt.Println(CalculateInternetSpeed())
-
+			resultInternet := CalculateInternetSpeed()
+			color.Blue(fmt.Sprintf("Download: %.2f Mbps", resultInternet.DownloadSpeed))
+			color.Green(fmt.Sprintf("Upload: %.2f Mbps", resultInternet.UploadSpeed))
+			color.Red(fmt.Sprintf("Latency: %v ns", resultInternet.Latency))
+			color.White(fmt.Sprintf("Sponsor: %v ", resultInternet.Sponsor))
 		}
 	},
 }
@@ -39,9 +42,6 @@ func CalculateInternetSpeed() InternetSpeedResult {
 		s.DownloadTest()
 		s.UploadTest()
 
-		//color.Blue(fmt.Sprintf("Download: %.2f Mbps", s.DLSpeed))
-		//color.Green(fmt.Sprintf("Upload: %.2f Mbps", s.ULSpeed))
-		//color.Red(fmt.Sprintf("Latency: %v ns", s.Latency))
 		result.DownloadSpeed = s.DLSpeed
 		result.UploadSpeed = s.ULSpeed
 		result.Latency = s.Latency
@@ -50,7 +50,8 @@ func CalculateInternetSpeed() InternetSpeedResult {
 		result.Sponsor = s.Sponsor
 		s.Context.Reset() // reset counter
 	}
-
+	fmt.Printf("\r                                                     \r")
+	fmt.Printf("\033[2J\033[1;1H")
 	return result
 }
 func IsDeviceConnectedToInternet() bool {
@@ -64,14 +65,13 @@ func IsDeviceConnectedToInternet() bool {
 func Animation() {
 	loadingCharacters := []string{"|", "/", "-", "\\"}
 	connectingMessages := []string{
-
 		"Configuring DNS...",
 		"Obtaining IP Address...",
 		"Establishing Connection...",
 	}
 
 	for _, message := range connectingMessages {
-		color.Yellow(fmt.Sprintf("%s\n", message))
+		fmt.Printf("%s\n", message)
 		time.Sleep(2 * time.Second)
 	}
 	// fmt.Printf("\r                                 \r")
@@ -82,8 +82,6 @@ func Animation() {
 		time.Sleep(100 * time.Millisecond)
 
 	}
-
-	fmt.Printf("\r                                 \r")
 
 }
 
