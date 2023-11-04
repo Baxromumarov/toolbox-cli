@@ -6,13 +6,14 @@ package info
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/fatih/color"
-	"github.com/spf13/cobra"
 	"io"
 	"net/http"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/fatih/color"
+	"github.com/spf13/cobra"
 )
 
 var Source string
@@ -66,7 +67,8 @@ func GetWeather(q string) {
 	}
 	var weather Weather
 	if err := json.Unmarshal(body, &weather); err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	location, current, hours := weather.Location, weather.Current, weather.Forecast.ForecastDat[0].Hour
 	color.Green(fmt.Sprintf(
