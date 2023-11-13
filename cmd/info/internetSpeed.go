@@ -21,7 +21,7 @@ var InternetSpeedCmd = &cobra.Command{
 			resultInternet := CalculateInternetSpeed()
 			color.Blue(fmt.Sprintf("Download: %.2f Mbps", resultInternet.DownloadSpeed))
 			color.Green(fmt.Sprintf("Upload: %.2f Mbps", resultInternet.UploadSpeed))
-			color.Red(fmt.Sprintf("Latency: %v", resultInternet.Latency))
+			color.Red(fmt.Sprintf("Latency: %v ns", resultInternet.Latency))
 			color.White(fmt.Sprintf("Sponsor: %v ", resultInternet.Sponsor))
 		}
 	},
@@ -51,6 +51,7 @@ func CalculateInternetSpeed() InternetSpeedResult {
 		s.Context.Reset() // reset counter
 	}
 	fmt.Printf("\r                                                     \r")
+	fmt.Printf("\033[2J\033[1;1H")
 	return result
 }
 func IsDeviceConnectedToInternet() bool {
